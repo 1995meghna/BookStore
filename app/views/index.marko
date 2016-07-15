@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta itemprop="description" name="Description"
+            content="Async Fragments Demo using Marko"/>
+        <title>Marko with Express</title>
+         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <center>
+            <form action="/searchBook" method="post">
+                <input type="text" name="key" />
+               <input type="submit" name="search" value="Search Book by Title" />
+            </form><br><br>
+            <form action="/addbook" method="get">
+               <input type="submit" class="btn btn-primary" value="Add book"/>
+            </form><br><br>
+            
+             
+
+        <div if(data.books=="")><h2>There are no books to show</h2></div>     
+
+       <!--  <div else class="col-md-8" align="center">  -->
+             <table class="table table-bordered table-hover"  id='tablecss'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Price</th>
+                        <th>Average Rating</th> 
+                        <th>Reviews</th>   
+                        <th></th>  
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr for(bk in data.books) >
+                        <td>${bk.title}</td>
+                        <td>${bk.author}</td>
+                        <td>${bk.price}</td>    
+                       <td>${bk.averageRating}</td>
+                        <td><p for(rev in bk.reviews)>name : ${rev.name} <br> review : ${rev.review} <br> rating: ${rev.rating}<hr></p>
+                        </td>    
+                        
+                        
+                        
+                        <td><form action="/addReviews/${bk.id}" method="get">
+                        <input type="submit" name="addReviews" value="Add reviews" /><br></form>
+                        
+                        <form action="/update/${bk.id}" method="get">
+                        <input type="submit" name="update" value="Update" /><br></form>
+
+                        <input type="button" name="delete"  value="Delete book" 
+                        onclick="document.location.href='/delete/${bk.id}'"/></td>
+                    </tr> 
+                </tbody>  
+            
+            </table>
+       <!--  </div> -->
+        </center>
+    </body>
+</html>
