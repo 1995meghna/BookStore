@@ -8,6 +8,8 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+// test
+
 var index = marko.load(require.resolve('../views/index.marko'));
 var addBook = marko.load(require.resolve('../views/addBook.marko'));
 var addReview = marko.load(require.resolve('../views/addReviews.marko'));
